@@ -11,7 +11,7 @@ public class Manager : MonoBehaviour
     public Camera camera = null;
     public GameObject guiGameOver = null;
     public LevelGenerator levelGenerator = null;
-
+    public Text bestScoreText;
     private int currentCoins = 0;
     private int currentDistance = 0;
     private bool canPlay = false;
@@ -82,8 +82,30 @@ public class Manager : MonoBehaviour
     {
         camera.GetComponent<CameraShake> ().Shake ();
         camera.GetComponent<CameraFollow> ().enabled = false;
-
+        CheckBestScore();
         GuiGameOver ();
+    }
+    private void CheckBestScore()
+    {
+        if (PlayerPrefs.HasKey("Bestscore"))
+        {
+            if (currentDistance>PlayerPrefs.GetInt("Bestscore"))
+            {
+                PlayerPrefs.SetInt("Bestscore", currentDistance);
+                PlayerPrefs.Save();
+                bestScoreText.text = currentDistance.ToString();
+            }
+            else
+            {
+                bestScoreText.text = PlayerPrefs.GetInt("Bestscore").ToString();
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Bestscore", currentDistance);
+            PlayerPrefs.Save();
+            bestScoreText.text = currentDistance.ToString();
+        }
     }
 
     void GuiGameOver ()
