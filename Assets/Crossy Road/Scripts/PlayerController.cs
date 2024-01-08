@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     public GameObject     chick             = null;
     public Renderer      renderer          ;
     private bool          isVisible         = false;
-
+    public GameObject hat;
+    public GameObject glass;
     public AudioClip audioIdle1     = null;
     public AudioClip audioIdle2     = null;
     public AudioClip audioHop       = null;
@@ -36,6 +37,14 @@ public class PlayerController : MonoBehaviour
     {
         if ( !renderer)
         renderer = chick.GetComponent<Renderer> ();
+        if (PlayerPrefs.HasKey("Buy1"))
+        {
+            glass.SetActive(true);
+        }
+        if (PlayerPrefs.HasKey("Buy2"))
+        {
+            hat.SetActive(true);
+        }
     }
     void Update ()
     {
