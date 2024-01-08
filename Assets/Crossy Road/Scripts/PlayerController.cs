@@ -19,7 +19,10 @@ public class PlayerController : MonoBehaviour
     public Renderer      renderer          ;
     private bool          isVisible         = false;
     public GameObject hat;
+    public Joystick joystick;
     public GameObject glass;
+    private bool isCanMove=true;
+    private bool isJuumping;
     public AudioClip audioIdle1     = null;
     public AudioClip audioIdle2     = null;
     public AudioClip audioHop       = null;
@@ -55,7 +58,13 @@ public class PlayerController : MonoBehaviour
         CanIdle ();
 
         CanMove ();
-
+        if (!isCanMove)
+        {
+            if (joystick.Vertical==0f || joystick.Horizontal==0f)
+            {
+                isCanMove = true;
+            }
+        }
         IsVisible ();
     }
     public Vector3 CheckPosition()
@@ -66,16 +75,16 @@ public class PlayerController : MonoBehaviour
     {
         if ( isIdle )
         {
-            if ( Input.GetKeyDown ( KeyCode.UpArrow    ) ) { CheckIfIdle ( 270,   0, 0 ); }
-            if ( Input.GetKeyDown ( KeyCode.DownArrow  ) ) { CheckIfIdle ( 270, 180, 0 ); }
-            if ( Input.GetKeyDown ( KeyCode.LeftArrow  ) ) { CheckIfIdle ( 270, -90, 0 ); }
-            if ( Input.GetKeyDown ( KeyCode.RightArrow ) ) { CheckIfIdle ( 270,  90, 0 ); }
+            if ( Input.GetKeyDown ( KeyCode.UpArrow    ) || (joystick.Vertical >= 0.9f && isCanMove)) { CheckIfIdle ( 270,   0, 0 ); }
+            if ( Input.GetKeyDown ( KeyCode.DownArrow  ) || (joystick.Vertical <= -0.9f && isCanMove)) { CheckIfIdle ( 270, 180, 0 ); }
+            if ( Input.GetKeyDown ( KeyCode.LeftArrow  ) || (joystick.Horizontal <= -0.9f && isCanMove)) { CheckIfIdle ( 270, -90, 0 ); }
+            if ( Input.GetKeyDown ( KeyCode.RightArrow ) || (joystick.Horizontal >= 0.9f && isCanMove)) { CheckIfIdle ( 270,  90, 0 ); }
         }
     }
     void CheckIfIdle ( float x, float y, float z )
     {
         chick.transform.rotation = Quaternion.Euler ( x, y, z );
-
+        
         CheckIfCanMove ();
 
         int a = UnityEngine.Random.Range ( 0, 12 );
@@ -119,10 +128,10 @@ public class PlayerController : MonoBehaviour
     {
         if ( isMoving )
         {
-                 if ( Input.GetKeyUp ( KeyCode.UpArrow    ) ) { Moving ( new Vector3 ( transform.position.x, transform.position.y, transform.position.z + moveDistance ) ); SetMoveForwardState (); }
-            else if ( Input.GetKeyUp ( KeyCode.DownArrow  ) ) { Moving ( new Vector3 ( transform.position.x, transform.position.y, transform.position.z - moveDistance ) ); }
-            else if ( Input.GetKeyUp ( KeyCode.LeftArrow  ) ) { Moving ( new Vector3 ( transform.position.x - moveDistance, transform.position.y, transform.position.z ) ); }
-            else if ( Input.GetKeyUp ( KeyCode.RightArrow ) ) { Moving ( new Vector3 ( transform.position.x + moveDistance, transform.position.y, transform.position.z ) ); }
+                 if ( Input.GetKeyUp ( KeyCode.UpArrow    ) || (joystick.Vertical >= 0.8f && isCanMove)) { Moving ( new Vector3 ( transform.position.x, transform.position.y, transform.position.z + moveDistance ) ); SetMoveForwardState (); }
+            else if ( Input.GetKeyUp ( KeyCode.DownArrow  ) || (joystick.Vertical <= -0.8f && isCanMove)) { Moving ( new Vector3 ( transform.position.x, transform.position.y, transform.position.z - moveDistance ) ); }
+            else if ( Input.GetKeyUp ( KeyCode.LeftArrow  ) || (joystick.Horizontal <= -0.8f && isCanMove)) { Moving ( new Vector3 ( transform.position.x - moveDistance, transform.position.y, transform.position.z ) ); }
+            else if ( Input.GetKeyUp ( KeyCode.RightArrow ) || (joystick.Horizontal >= 0.8f && isCanMove)) { Moving ( new Vector3 ( transform.position.x + moveDistance, transform.position.y, transform.position.z ) ); }
         }
     }
     void Moving ( Vector3 pos )
@@ -140,7 +149,7 @@ public class PlayerController : MonoBehaviour
     {
         isJumping = false;
         isIdle = true;
-
+        isCanMove = false;
         int a = UnityEngine.Random.Range ( 0, 12 );
         if ( a < 4 ) PlayAudioClip ( audioIdle2 );
     }
