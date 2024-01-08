@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-
+        CheckBuy();
         instance = this;
         Application.targetFrameRate = 60;
     }
@@ -42,6 +42,10 @@ public class PlayerController : MonoBehaviour
     {
         if ( !renderer)
         renderer = chick.GetComponent<Renderer> ();
+
+    }
+    public void CheckBuy()
+    {
         if (PlayerPrefs.HasKey("Buy1"))
         {
             glass.SetActive(true);

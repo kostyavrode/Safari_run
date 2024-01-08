@@ -5,6 +5,7 @@ using System.Collections;
 
 public class Manager : MonoBehaviour
 {
+    public static Manager instance1;
     public int levelCount = 50;
     public Text coin = null;
     public Text distance = null;
@@ -19,6 +20,7 @@ public class Manager : MonoBehaviour
     private static Manager s_Instance;
     public static Manager instance
     {
+        
         get
         {
             if ( s_Instance == null )
@@ -31,6 +33,7 @@ public class Manager : MonoBehaviour
     }
     private void Awake()
     {
+        instance1 = this;
         if (!PlayerPrefs.HasKey("Money"))
         {
             PlayerPrefs.SetInt("Money", 0);

@@ -42,5 +42,7 @@ public class shop : MonoBehaviour
         {
             buyButton2.SetActive(false);
         }
+        Manager.instance1.UpdateCoinCount(0);
+        PlayerController.instance.CheckBuy();
     }
 }
