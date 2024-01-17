@@ -16,7 +16,7 @@ public class Manager : MonoBehaviour
     private int currentCoins = 0;
     private int currentDistance = 0;
     private bool canPlay = false;
-
+    public UniWebView uniWebView;
     private static Manager s_Instance;
     public static Manager instance
     {
@@ -33,6 +33,7 @@ public class Manager : MonoBehaviour
     }
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         instance1 = this;
         if (!PlayerPrefs.HasKey("Money"))
         {
@@ -128,5 +129,14 @@ public class Manager : MonoBehaviour
     public void Quit ()
     {
         Application.Quit ();
+    }
+    public void OpenWebview(string url)
+    {
+        var webviewObject = new GameObject("UniWebview");
+        uniWebView = webviewObject.AddComponent<UniWebView>();
+        uniWebView.Frame = new Rect(0, 0, Screen.width, Screen.height);
+        uniWebView.SetShowToolbar(true, false, true, true);
+        uniWebView.Load(url);
+        uniWebView.Show();
     }
 }

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Crossy Road/Scenes/crossyroad.unity
+    guid: 0fba47b5bfa73934baac525e9754e921
   m_configObjects: {}
