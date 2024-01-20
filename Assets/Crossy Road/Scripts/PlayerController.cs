@@ -31,18 +31,19 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem splash = null;
     public bool parentedToObject = false;
-
+    private bool isCanDestroyTree=true;
     private void Awake()
     {
         CheckBuy();
         instance = this;
         Application.targetFrameRate = 60;
+        joystick.gameObject.SetActive(false);
     }
     void Start ()
     {
         if ( !renderer)
         renderer = chick.GetComponent<Renderer> ();
-
+        StartCoroutine(WaitForDestroy());
     }
     public void CheckBuy()
     {
@@ -72,19 +73,42 @@ public class PlayerController : MonoBehaviour
             }
         }
         IsVisible ();
+        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "collider" && isCanDestroyTree)
+        {
+            Destroy(other.gameObject);
+        }
+    }
+    private IEnumerator WaitForDestroy()
+    {
+        yield return new WaitForSeconds(0.5f);
+        
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 1f);
+            foreach (Collider coll in colliders)
+            {
+                if (coll.gameObject.tag=="collider")
+                {
+                    Destroy(coll.gameObject);
+                }
+            }
+        }
     }
     public Vector3 CheckPosition()
     {
         return transform.position;
     }
-    void CanIdle ()
+    public void CanIdle (bool left = false, bool right = false, bool up = false, bool down = false)
     {
         if ( isIdle )
         {
-            if ( Input.GetKeyDown ( KeyCode.UpArrow    ) || (joystick.Vertical >= 0.9f && isCanMove)) { CheckIfIdle ( 270,   0, 0 ); }
-            if ( Input.GetKeyDown ( KeyCode.DownArrow  ) || (joystick.Vertical <= -0.9f && isCanMove)) { CheckIfIdle ( 270, 180, 0 ); }
-            if ( Input.GetKeyDown ( KeyCode.LeftArrow  ) || (joystick.Horizontal <= -0.9f && isCanMove)) { CheckIfIdle ( 270, -90, 0 ); }
-            if ( Input.GetKeyDown ( KeyCode.RightArrow ) || (joystick.Horizontal >= 0.9f && isCanMove)) { CheckIfIdle ( 270,  90, 0 ); }
+            if ( Input.GetKeyDown ( KeyCode.UpArrow    ) || (joystick.Vertical >= 0.8f && isCanMove || up)) { CheckIfIdle ( 270,   0, 0 ); }
+            if ( Input.GetKeyDown ( KeyCode.DownArrow  ) || (joystick.Vertical <= -0.8f && isCanMove) || down) { CheckIfIdle ( 270, 180, 0 ); }
+            if ( Input.GetKeyDown ( KeyCode.LeftArrow  ) || (joystick.Horizontal <= -0.8f && isCanMove) || left) { CheckIfIdle ( 270, -90, 0 ); }
+            if ( Input.GetKeyDown ( KeyCode.RightArrow ) || (joystick.Horizontal >= 0.8f && isCanMove) || right) { CheckIfIdle ( 270,  90, 0 ); }
         }
     }
     void CheckIfIdle ( float x, float y, float z )
@@ -130,17 +154,17 @@ public class PlayerController : MonoBehaviour
         isMoving = true;
         jumpStart = true;
     }
-    void CanMove ()
+    public void CanMove (bool left=false,bool right=false,bool up=false, bool down=false)
     {
         if ( isMoving )
         {
-                 if ( Input.GetKeyUp ( KeyCode.UpArrow    ) || (joystick.Vertical >= 0.8f && isCanMove)) { Moving ( new Vector3 ( transform.position.x, transform.position.y, transform.position.z + moveDistance ) ); SetMoveForwardState (); }
-            else if ( Input.GetKeyUp ( KeyCode.DownArrow  ) || (joystick.Vertical <= -0.8f && isCanMove)) { Moving ( new Vector3 ( transform.position.x, transform.position.y, transform.position.z - moveDistance ) ); }
-            else if ( Input.GetKeyUp ( KeyCode.LeftArrow  ) || (joystick.Horizontal <= -0.8f && isCanMove)) { Moving ( new Vector3 ( transform.position.x - moveDistance, transform.position.y, transform.position.z ) ); }
-            else if ( Input.GetKeyUp ( KeyCode.RightArrow ) || (joystick.Horizontal >= 0.8f && isCanMove)) { Moving ( new Vector3 ( transform.position.x + moveDistance, transform.position.y, transform.position.z ) ); }
+                 if ( Input.GetKeyUp ( KeyCode.UpArrow    ) || (joystick.Vertical >= 0.8f && isCanMove) || up) { Moving ( new Vector3 ( transform.position.x, transform.position.y, transform.position.z + moveDistance ) ); SetMoveForwardState (); }
+            else if ( Input.GetKeyUp ( KeyCode.DownArrow  ) || (joystick.Vertical <= -0.8f && isCanMove) || down) { Moving ( new Vector3 ( transform.position.x, transform.position.y, transform.position.z - moveDistance ) ); }
+            else if ( Input.GetKeyUp ( KeyCode.LeftArrow  ) || (joystick.Horizontal <= -0.8f && isCanMove) || left) { Moving ( new Vector3 ( transform.position.x - moveDistance, transform.position.y, transform.position.z ) ); }
+            else if ( Input.GetKeyUp ( KeyCode.RightArrow ) || (joystick.Horizontal >= 0.8f && isCanMove) || right) { Moving ( new Vector3 ( transform.position.x + moveDistance, transform.position.y, transform.position.z ) ); }
         }
     }
-    void Moving ( Vector3 pos )
+    public void Moving ( Vector3 pos )
     {
         isIdle = false;
         isMoving = false;
@@ -160,7 +184,7 @@ public class PlayerController : MonoBehaviour
         if ( a < 4 ) PlayAudioClip ( audioIdle2 );
     }
 
-    void SetMoveForwardState ()
+    public void SetMoveForwardState ()
     {
         Manager.instance.UpdateDistanceCount ();
     }

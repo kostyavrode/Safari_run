@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102158}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 422916}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11412634
 MonoBehaviour:
@@ -50,8 +50,9 @@ MonoBehaviour:
   speedMin: 2
   speedMax: 6
   useSpawnPlacement: 1
-  spawnCountMin: 7
-  spawnCountMax: 15
+  spawnCountMin: 3
+  spawnCountMax: 8
+  spawnedObjects: []
   item: {fileID: 0}
   goLeft: 0
   spawnLeftPos: 0
@@ -80,13 +81,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122396}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 417734}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11415744
 MonoBehaviour:
@@ -108,6 +109,7 @@ MonoBehaviour:
   useSpawnPlacement: 1
   spawnCountMin: 4
   spawnCountMax: 12
+  spawnedObjects: []
   item: {fileID: 0}
   goLeft: 0
   spawnLeftPos: 0
@@ -136,6 +138,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124722}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -146,7 +149,6 @@ Transform:
   - {fileID: 488576}
   - {fileID: 464264}
   m_Father: {fileID: 475470}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11455244
 MonoBehaviour:
@@ -199,6 +201,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127870}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 50, y: 1, z: 2}
@@ -207,7 +210,6 @@ Transform:
   - {fileID: 422916}
   - {fileID: 417734}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3386740
 MeshFilter:
@@ -225,9 +227,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127870}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2399318
@@ -309,13 +319,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137678}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 422916}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11420792
 MonoBehaviour:
@@ -335,8 +345,9 @@ MonoBehaviour:
   speedMin: 2
   speedMax: 6
   useSpawnPlacement: 1
-  spawnCountMin: 7
-  spawnCountMax: 15
+  spawnCountMin: 3
+  spawnCountMax: 8
+  spawnedObjects: []
   item: {fileID: 0}
   goLeft: 0
   spawnLeftPos: 0
@@ -365,13 +376,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145572}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 417734}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11440846
 MonoBehaviour:
@@ -393,6 +404,7 @@ MonoBehaviour:
   useSpawnPlacement: 1
   spawnCountMin: 4
   spawnCountMax: 12
+  spawnedObjects: []
   item: {fileID: 0}
   goLeft: 0
   spawnLeftPos: 0
@@ -421,13 +433,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157478}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 417734}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11458718
 MonoBehaviour:
@@ -449,6 +461,7 @@ MonoBehaviour:
   useSpawnPlacement: 1
   spawnCountMin: 4
   spawnCountMax: 12
+  spawnedObjects: []
   item: {fileID: 0}
   goLeft: 0
   spawnLeftPos: 0
@@ -477,6 +490,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158066}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -487,7 +501,6 @@ Transform:
   - {fileID: 401576}
   - {fileID: 477002}
   m_Father: {fileID: 475470}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11497426
 MonoBehaviour:
@@ -535,13 +548,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175062}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 422916}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11440528
 MonoBehaviour:
@@ -561,8 +574,9 @@ MonoBehaviour:
   speedMin: 2
   speedMax: 6
   useSpawnPlacement: 1
-  spawnCountMin: 7
-  spawnCountMax: 15
+  spawnCountMin: 3
+  spawnCountMax: 8
+  spawnedObjects: []
   item: {fileID: 0}
   goLeft: 0
   spawnLeftPos: 0
@@ -591,13 +605,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186078}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 417734}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11451532
 MonoBehaviour:
@@ -619,6 +633,7 @@ MonoBehaviour:
   useSpawnPlacement: 1
   spawnCountMin: 4
   spawnCountMax: 12
+  spawnedObjects: []
   item: {fileID: 0}
   goLeft: 0
   spawnLeftPos: 0
@@ -647,13 +662,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196276}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 422916}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11412780
 MonoBehaviour:
@@ -673,8 +688,9 @@ MonoBehaviour:
   speedMin: 2
   speedMax: 6
   useSpawnPlacement: 1
-  spawnCountMin: 7
-  spawnCountMax: 15
+  spawnCountMin: 3
+  spawnCountMax: 8
+  spawnedObjects: []
   item: {fileID: 0}
   goLeft: 0
   spawnLeftPos: 0
